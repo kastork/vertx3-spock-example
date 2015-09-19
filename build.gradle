@@ -3,7 +3,6 @@
 plugins {
   id 'java'
   id "groovy"
-  id 'com.github.johnrengelman.shadow' version '1.2.2'
 }
 
 version = '0.0.1'
