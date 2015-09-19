@@ -6,6 +6,8 @@ There's no gradle wrapper.  Known to work with gradle 2.7
 
 The idea is to test vertx java or groovy code with Spock's async capability -- no need for the Vertx test package.  But this is a trivial example so far.
 
+Spock test reports will be in `build/reports/test`
+
 ## todo
 
 * Port more of the official Vertx test examples to spock.
