@@ -6,7 +6,7 @@ import spock.util.concurrent.AsyncConditions
 
 class SpecSpec extends Specification
 {
-  def conds = new AsyncConditions()
+  def conds = new AsyncConditions(2)
 
   def "Is fascinating"()
   {
@@ -16,6 +16,7 @@ class SpecSpec extends Specification
     def deployAssertion = {response ->
       conds.evaluate {
         assert response.succeeded()
+        println "deploy assertion"
       }
     }
 
@@ -26,16 +27,12 @@ class SpecSpec extends Specification
         .requestHandler {req -> req.response.end("foo")}
         .listen(8080, deployAssertion)
 
-    then:
-
-    conds.await()
-
-    when:
-
     def client = vertx.createHttpClient()
     def responseAssertion = {result ->
       conds.evaluate {
         assert result.toString().equals("foo")
+        println "response assertion"
+
       }
     }
 
