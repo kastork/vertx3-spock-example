@@ -1,6 +1,5 @@
 package io.github.kastork
 
-import io.vertx.core.Handler
 import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.file.AsyncFile
@@ -104,28 +103,6 @@ class VertxFileSystemSpec extends Specification
   // TODO: Refactor in the style of groovy/spock
   // For many of these util functions, I just copied
   // them to get things going quickly
-
-  // copy of java method in the Vertx sources
-  private void testCopy(String source, String target, boolean recursive,
-                        boolean shouldPass, Handler<Void> afterOK)
-  {
-    if (recursive)
-    {
-      vertx.fileSystem().copyRecursive(
-          testDir + pathSep + source,
-          testDir + pathSep + target,
-          true,
-          createHandler(shouldPass, afterOK)
-      );
-    } else
-    {
-      vertx.fileSystem().copy(
-          testDir + pathSep + source,
-          testDir + pathSep + target,
-          createHandler(shouldPass, afterOK)
-      );
-    }
-  }
 
   // copy of java method in the Vertx sources
   private void createFile(String fileName, byte[] bytes) throws Exception
