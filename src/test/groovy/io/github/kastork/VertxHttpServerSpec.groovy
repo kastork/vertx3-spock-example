@@ -4,11 +4,11 @@ import io.vertx.core.Vertx
 import spock.lang.Specification
 import spock.util.concurrent.AsyncConditions
 
-class SpecSpec extends Specification
+class VertxHttpServerSpec extends Specification
 {
   def conds = new AsyncConditions(2)
 
-  def "Is fascinating"()
+  def "Start and Stop HTTP server"()
   {
     given:
 
@@ -16,7 +16,6 @@ class SpecSpec extends Specification
     def deployAssertion = {response ->
       conds.evaluate {
         assert response.succeeded()
-        println "deploy assertion"
       }
     }
 
@@ -31,7 +30,6 @@ class SpecSpec extends Specification
     def responseAssertion = {result ->
       conds.evaluate {
         assert result.toString().equals("foo")
-        println "response assertion"
 
       }
     }
